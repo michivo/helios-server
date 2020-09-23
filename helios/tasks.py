@@ -76,9 +76,11 @@ def single_voter_email(voter_uuid, subject_template, body_template, extra_vars={
 @shared_task
 def single_voter_notify(voter_uuid, notification_template, extra_vars={}):
     voter = Voter.objects.get(uuid=voter_uuid)
+    election = Election.objects.get(id=extra_vars['election_id'])
 
-    the_vars = copy.copy(extra_vars)
-    the_vars.update({'voter': voter})
+    the_vars = copy.copy(extra_vars)    
+    the_vars['voter'] = voter
+    the_vars['election'] = election
 
     notification = render_template_raw(None, notification_template, the_vars)
 
