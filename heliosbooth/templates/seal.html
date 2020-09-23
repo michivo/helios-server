@@ -4,10 +4,10 @@
 <h4><a onclick="$('#auditbody').slideToggle(250);" href="#">Audit</a> <span style="font-size: 0.8em; color: #444">[optional]</span></h4>
 <div id="auditbody" style="display:none;">
 <p>
-If you choose, you can audit your ballot and reveal how your choices were encrypted.
+    Wenn du willst, kannst du deinen Stimmzettel auditieren und ansehen, wie deine Wahl verschl&uuml;sselt wurde.
 </p>
 <p>
-You will then be guided to re-encrypt your choices for final casting.
+    Du wirst dann durch einen Prozess gef&uuml;hrt, um deine Stimme f&uuml;r die endg&uuml;ltige Stimmabgabe erneut zu verschl&uuml;sseln.
 </p>
 <input type="button" value="Verify Encryption" onclick="BOOTH.audit_ballot();" class="pretty" />
 </p>
@@ -15,7 +15,7 @@ You will then be guided to re-encrypt your choices for final casting.
 </div>
 {#/if}
 
-<h3>Review your Ballot</h3>
+<h3>Stimmzettel kontrollieren</h3>
 
 
 <div style="padding: 10px; margin-bottom: 10px; background-color: #eee; border: 1px #ddd solid; max-width: 340px;">
@@ -23,26 +23,27 @@ You will then be guided to re-encrypt your choices for final casting.
 
 <b>Question #{$T.question$index + 1}: {$T.question.short_name}</b><br>
 {#if $T.choices[$T.question$index].length == 0}
-<div style="margin-left: 15px;">&#x2610; <i>No choice selected</i></div>
+<div style="margin-left: 15px;">&#x2610; <i>Enthalten</i></div>
 {#/if}
 {#foreach $T.choices[$T.question$index] as choice}
 <div style="margin-left: 15px;">&#x2713; {$T.choice}</div>
 {#/for}
 {#if $T.choices[$T.question$index].length < $T.question.max}
-[you selected {$T.choices[$T.question$index].length} candidates; you may select from {$T.question.min} to {$T.question.max}]
+[du hast {$T.choices[$T.question$index].length} Optionen gew&auml;hlt; du kannst zwischen {$T.question.min} und {$T.question.max} Optionen w&auml;hlen]
 {#/if}
-[<a onclick="BOOTH.show_question({$T.question$index}); return false;" href="#">edit responses</a>]
+[<a onclick="BOOTH.show_question({$T.question$index}); return false;" href="#">Stimme &auml;ndern</a>]
 {#if !$T.question$last}<br><br>{#/if}
 {#/for}
 </div>
 
 
-<p><p>Your ballot tracker is <b><tt style="font-size: 11pt;">{$T.encrypted_vote_hash}</tt></b>, and you can <a onclick="BOOTH.show_receipt(); return false;" href="#">print</a> it.<br /><br /></p>
+<p><p>Du kannst deine Stimme hier &uuml;berpr&uuml;fen: <b><tt style="font-size: 11pt;">{$T.encrypted_vote_hash}</tt></b>, und sie auch <a onclick="BOOTH.show_receipt(); return false;" href="#">ausdrucken</a>.<br /><br /></p>
 
 <p>
-Once you click "Submit", the unencrypted version of your ballot will be destroyed, and only the encrypted version will remain.  The encrypted version will be submitted to the Helios server.</p>
+    Wenn du auf "Stimme abgeben" klickst, wird die nicht verschl&uuml;sselte Version deines Stimmzettels zerst&ouml;rt,
+    nur die verschl&uuml;sselte Version bleibt erhalten. Diese verschl&uuml;sselte Version wird an den Wahlserver &uuml;bertragen.</p>
 
-<button id="proceed_button" onclick="BOOTH.cast_ballot();">Submit this Vote!</button><br />
+<button id="proceed_button" onclick="BOOTH.cast_ballot();">Stimme abgeben</button><br />
 <div id="loading_div"><img src="loading.gif" id="proceed_loading_img" /></div>
 
 

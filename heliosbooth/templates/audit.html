@@ -1,18 +1,22 @@
 
-<h3>Your audited ballot</h3>
+<h3>Dein &uuml;berpr&uuml;fter Stimmzettel</h3>
 
 <p>
-<b><u>IMPORTANT</u></b>: this ballot, now that it has been audited, <em>will not be tallied</em>.<br />
-To cast a ballot, you must click the "Back to Voting" button below, re-encrypt it, and choose "cast" instead of "audit."
+<b><u>Wichtig</u></b>: Der jetzt &uuml;berpr&uuml;fte Stimmzettel, <em>wird nicht gez&auml;hlt</em>.<br />
+Um den Stimmzettel abzugeben, musst du auf "Zur&uuml;ck zur Wahl" klicken, den Stimmzettel erneut verschl&uuml;sseln und 
+ihn "abgeben" statt ihn zu "&uuml;berpr&uuml;fen".
 </p>
 
 <p>
-<b>Why?</b> Helios prevents you from auditing and casting the same ballot to provide you with some protection against coercion.
+<b>Warum?</b> Helios verhindert, dass ein und derselbe Stimmzettel &uuml;berpr&uuml;ft und abgegeben wird, 
+um dich vor einem Stimmzwang zu sch&uuml;tzen.
+
 </p>
 
 <p>
-<b>Now what?</b> <a onclick="$('#audit_trail').select(); return false;" href="#">Select your ballot audit info</a>, copy it to your clipboard, then use the <a target="_blank" href="single-ballot-verify.html?election_url={$T.election_url}">ballot verifier</a> to verify it.<br />
-Once you're satisfied, click the "back to voting" button to re-encrypt and cast your ballot.
+<b>Was nun?</b> <a onclick="$('#audit_trail').select(); return false;" href="#">Markiere deine Pr&uuml;fdaten</a>, 
+kopiere sie in die Zwischenablage und verwende die <a target="_blank" href="single-ballot-verify.html?election_url={$T.election_url}">Stimmzettel-Pr&uuml;fung</a> um sie zu validieren.<br />
+Wenn du damit zufrieden bist, klicke auf "Zur&uuml;ck zur Wahl", um deinen Stimmzettel erneut zu verschl&uuml;sseln und deine Stimme abzugeben.
 </p>
 
 <form action="#">
@@ -20,14 +24,14 @@ Once you're satisfied, click the "back to voting" button to re-encrypt and cast 
 {$T.audit_trail}
 </textarea>
 <br /><br />
-Before going back to voting,<br />
-you can post this audited ballot to the Helios tracking center so that others might double-check the verification of this ballot.
+Bevor du zur Wahl zur&uuml;ckkehrst,<br />
+kannst du den &uuml;pr&uuml;ften Stimmzettel an das Helios-Tracking-Center schicken, damit andere die Validierung und Verifikation des Stimmzettels doppelt pr&uuml;fen k&ouml;nnen.
 <br /><br />
-<b>Even if you post your audited ballot, you must go back to voting and choose "cast" if you want your vote to count.</b>
+<b>Auch wenn du den &uuml;pr&uuml;ften Stimmzettel abschickst, musst du zur Wahl zur&uuml;ckgehen und deinen Stimmzettel einwerfen, wenn du willst, dass deine Stimme gez&auml;hlt wird.
 <br /><br />
-<input type="button" value="back to voting" onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot();" class="pretty" />
+<input type="button" value="Zur&uuml;ck zur Wahl" onclick="BOOTH.reset_ciphertexts();BOOTH.seal_ballot();" class="pretty" />
 &nbsp; &nbsp;&nbsp;
-<input type="button" value="post audited ballot to tracking center" onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot();" id="post_audited_ballot_button" class="pretty" style="font-size:0.8em;"/>
+<input type="button" value="&Uuml;berpr&uuml;ften Stimmzettel ans Tracking-Center schicken" onclick="$(this).attr('disabled', 'disabled');BOOTH.post_audited_ballot();" id="post_audited_ballot_button" class="pretty" style="font-size:0.8em;"/>
 
 </form>
 
