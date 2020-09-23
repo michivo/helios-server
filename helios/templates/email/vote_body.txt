@@ -1,29 +1,27 @@
-Dear {{voter.name}},
+Lieber {{voter.name}},
 
 {{custom_message|safe}}
 
-Election URL:  {{election_vote_url}}
-Election Fingerprint:  {{voter.election.hash}}
+Wahl-URL:  {{election_vote_url}}
+Wahl-Fingerprint:  {{voter.election.hash}}
 {% ifequal voter.voter_type "password" %}
-Your voter ID: {{voter.voter_login_id}}
-Your password: {{voter.voter_password}}
+Deine Wähler*innen-ID: {{voter.voter_login_id}}
+Dein Passwort:              {{voter.voter_password}}
 {% else %}
 Log in with your {{voter.voter_type}} account.
 {% endifequal %}{% if voter.vote_hash %}
-We have recorded your vote with smart tracker:
+Deine Stimme wird mit dem Smart Tracker erfasst:
 
   {{voter.vote_hash}}
 
-You may re-vote if you wish: only your last vote counts.
+Du kannst innerhalb der vorgesehenen Zeit so oft abstimmen, wie du willst. Nur deine letzte Stimme zählt.
 {% endif %}{% if election.use_voter_aliases %}
-In order to protect your privacy, this election is configured
-to never display your voter login ID, name, or email address to the public.
-Instead, the ballot tracking center will only display your alias.
+Um deine Daten zu schützen, ist diese Wahl so konfiguriert, dass weder deine Wähler*innen-ID, noch dein
+Name oder deine E-Mail-Adresse öffentlich sichtbar sind. Stattdessen wird nur dein Alias angezeigt.
 
-Your voter alias is {{voter.alias}}.
+Dein Alias ist {{voter.alias}}.
 
-IMPORTANTLY, when you are prompted to log in to vote,
-please use your *voter ID*, not your alias.
+WICHTIG: Wenn du abstimmst, musst du deine Wähler*innen-ID angeben, nicht deinen Alias!
 {% endif %}
 --
 Helios
