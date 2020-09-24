@@ -10,40 +10,40 @@ from django.conf import settings
 
 
 class ElectionForm(forms.Form):
-  short_name = forms.SlugField(max_length=40, help_text='no spaces, will be part of the URL for your election, e.g. my-club-2010')
-  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text='the pretty name for your election, e.g. My Club 2010 Election')
+  short_name = forms.SlugField(max_length=40, help_text='keine Leerzeichen, wird Teil der URL f&uuml;r die Wahl, z.B. landesversammlung-2020')
+  name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':60}), help_text='der offizielle Name deiner Wahl, z.B. Landesversammlung 2020')
   description = forms.CharField(max_length=4000, widget=forms.Textarea(attrs={'cols': 70, 'wrap': 'soft'}), required=False)
   election_type = forms.ChoiceField(label="type", choices = Election.ELECTION_TYPES)
-  use_voter_aliases = forms.BooleanField(required=False, initial=False, help_text='If selected, voter identities will be replaced with aliases, e.g. "V12", in the ballot tracking center')
+  use_voter_aliases = forms.BooleanField(required=False, initial=True, help_text='Wenn angehakt, werden die W&auml;hler*innen-Namen im Tracking-Center durch Aliases (wie "V42") ersetzt')
   #use_advanced_audit_features = forms.BooleanField(required=False, initial=True, help_text='disable this only if you want a simple election with reduced security but a simpler user interface')
-  randomize_answer_order = forms.BooleanField(required=False, initial=False, help_text='enable this if you want the answers to questions to appear in random order for each voter')
-  private_p = forms.BooleanField(required=False, initial=False, label="Private?", help_text='A private election is only visible to registered voters.')
-  help_email = forms.CharField(required=False, initial="", label="Help Email Address", help_text='An email address voters should contact if they need help.')
+  randomize_answer_order = forms.BooleanField(required=False, initial=False, help_text='Wenn angehakt, werden die Wahlm&ouml;glichkeiten den W&auml;hler*innen in zuf&auml;lliger Reihenfolge angezeigt')
+  private_p = forms.BooleanField(required=False, initial=True, label="Privat?", help_text='Eine Private Wahl ist nur f&uuml;r registrierte W&auml;hler*innen sichtbar.')
+  help_email = forms.CharField(required=False, initial="", label="Hilfe-Kontakt", help_text='Eine Email-Adresse, an die sich W&auml;hler*innen wenden k&ouml;nnen, wenn sie Hilfe brauchen.')
   
   if settings.ALLOW_ELECTION_INFO_URL:
-    election_info_url = forms.CharField(required=False, initial="", label="Election Info Download URL", help_text="the URL of a PDF document that contains extra election information, e.g. candidate bios and statements")
+    election_info_url = forms.CharField(required=False, initial="", label="URL mit Wahlinformationen", help_text="Die URL eines Dokuments mit weiterf&uuml;hrenden Informationen zur Wahl, z.B. Biographien der Kandidat*innen, ...")
   
   # times
-  voting_starts_at = SplitDateTimeField(help_text = 'UTC date and time when voting begins',
+  voting_starts_at = SplitDateTimeField(help_text = 'Startdatum/-zeit der Wahl (UTC!)',
                                    widget=SplitSelectDateTimeWidget, required=False)
-  voting_ends_at = SplitDateTimeField(help_text = 'UTC date and time when voting ends',
+  voting_ends_at = SplitDateTimeField(help_text = 'Enddatum/-zeit der Wahl (UTC!)',
                                    widget=SplitSelectDateTimeWidget, required=False)
 
 class ElectionTimeExtensionForm(forms.Form):
-  voting_extended_until = SplitDateTimeField(help_text = 'UTC date and time voting extended to',
+  voting_extended_until = SplitDateTimeField(help_text = 'Verl&auml;ngertes Enddatum der Wahl (UTC!)',
                                    widget=SplitSelectDateTimeWidget, required=False)
   
 class EmailVotersForm(forms.Form):
   subject = forms.CharField(max_length=80)
   body = forms.CharField(max_length=4000, widget=forms.Textarea)
-  send_to = forms.ChoiceField(label="Send To", initial="all", choices= [('all', 'all voters'), ('voted', 'voters who have cast a ballot'), ('not-voted', 'voters who have not yet cast a ballot')])
+  send_to = forms.ChoiceField(label="Senden an", initial="all", choices= [('all', 'alle W&auml;hler*innen'), ('voted', 'W&auml;hler*innen, die schon abgestimmt haben'), ('not-voted', 'W&aum;hler*innen, die noch nicht abgestimmt haben')])
 
 class TallyNotificationEmailForm(forms.Form):
   subject = forms.CharField(max_length=80)
   body = forms.CharField(max_length=2000, widget=forms.Textarea, required=False)
-  send_to = forms.ChoiceField(label="Send To", choices= [('all', 'all voters'), ('voted', 'only voters who cast a ballot'), ('none', 'no one -- are you sure about this?')])
+  send_to = forms.ChoiceField(label="Senden an", choices= [('all', 'alle W&auml;hler*innen'), ('voted', 'W&auml;hler*innen, die abgestimmt haben'), ('none', 'niemanden - bist du sicher?')])
 
 class VoterPasswordForm(forms.Form):
-  voter_id = forms.CharField(max_length=50, label="Voter ID")
+  voter_id = forms.CharField(max_length=50, label="W&auml;hler*innen-ID")
   password = forms.CharField(widget=forms.PasswordInput(), max_length=100)
 
