@@ -1,45 +1,45 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Audited Ballots for {{election.name}}{% endblock %}
+{% block title %}&Uuml;berpr&uuml;fte Stimmzettel {{election.name}}{% endblock %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Audited Ballots <span style="font-size:0.7em;">[<a href="{% url "election@view" election_uuid=election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; &Uuml;berpr&uuml;fte Stimmzettel <span style="font-size:0.7em;">[<a href="{% url "election@view" election_uuid=election.uuid %}">zur&uuml;ck zur Wahl</a>]</span></h2>
 
 <p>
-When you prepare a ballot with Helios, you immediately receive a smart ballot tracker. Before you choose to cast that ballot, you have the option to ask Helios to "break open" that encrypted ballot and verify that Helios encrypted your ballot correctly. Once that's done, you can post that opened ballot here, on the audited ballots' list, for everyone to verify (your identity is not included). Once you've done this, you have to re-encrypt your choices and obtain a different smart ballot tracker. This helps reduce the chance that someone might coerce you to vote differently from your true choice.
+  Wenn du eine Wahl mit Freie Wahl/Helios durchf&uuml;hrst, bekommst du einen Smarten Stimmzettel-Tracker. Bevor du deine Stimme abgibst, kannst du Helios bitte, deinen verschl&uuml;sselten Stimmzettel probeweise "aufzumachen" und &uuml;berpr&uuml;fen, ob Helios deinen Stimmzettel korrekt verschl&uuml;sselt hat. Wenn du das gemacht hast, kannst du deinen ge&ouml;ffneten Stimmzettel hier ver&ouml;ffentlichen, auf der List der &uuml;berpr&uuml;ften Stimmzettel, damit jede*r ihn einsehen und ebenfalls &uuml;berpr&uuml;fen kann. Deine Identit&auml;t wird nicht bekanntgegeben. Nachdem du das gemacht hast, musst du deinen Stimmzettel erneut verschl&uuml;sseln und erh&auml;ltsts einen neuen Smarten Stimmzettel-Tracker. Das soll verhindern, dass dich jemand zwingt, anders abzustimmen, als du wirklich willst.
 </p>
 
 <p>
-These ballots are <em>not cast</em>, and they will not be counted. They are just here for auditing purposes, to spot-check that Helios is properly encrypting voter's choices.
+  Diese Stimmzettel wurden <em>noch nicht</em> abgegeben und werden dem Ergebnis nicht zugerechnet. Sie dienen nur zur &Uuml;berpr&uuml;fung des Wahlablaufs, um zu sehen ob die Stimmzettel korrekt verschl&uuml;sselt werden und die korrekten Daten beinhalten.
 </p>
 
 <p>
-  To verify an audited ballot, copy its entire content and paste it in the <a target="_new" href="/booth/single-ballot-verify.html?election_url={% url "election@home" election.uuid %}">single ballot verifier</a>.
+  Um einen &uuml;berpr&uuml;ften Stimmzettel zu validieren, kopiere den gesamten Inhalt und f&uuml;ge ihn hier ein: <a target="_new" href="/booth/single-ballot-verify.html?election_url={% url "election@home" election.uuid %}">Stimmzettelvalidierung</a>.
 </p>
 
 {% if audited_ballots %}
 <p>
-Audited Ballots {{offset_plus_one}} - {{offset_plus_limit}} &nbsp;&nbsp;
+&Uuml;berpr&uuml;fte Stimmzettel {{offset_plus_one}} - {{offset_plus_limit}} &nbsp;&nbsp;
 </p>
 
 {% if next_after %}
-<a href="?after={{next_after}}&offset={{offset_plus_limit}}">next {{limit}}</a> &nbsp;&nbsp;
+<a href="?after={{next_after}}&offset={{offset_plus_limit}}">N&auml;chste {{limit}}</a> &nbsp;&nbsp;
 {% endif %}
 
 {% ifequal offset 0 %}
 {% else %}
-<a href="?">back to start</a> &nbsp;&nbsp;
+<a href="?">Zur&uuml;ck zum Start</a> &nbsp;&nbsp;
 {% endifequal %}
 {% if more_p %}
-<a href="?after={{next_after}}&offset={{next_offset}}">next {{limit}}</a>
+<a href="?after={{next_after}}&offset={{next_offset}}">N&auml;chste {{limit}}</a>
 {% endif %}
 <table class="pretty">
 {% for b in audited_ballots %}
-<tr><td><tt style="font-size: 1.4em;">{{b.vote_hash}}</tt> [<a target="_blank" href="?vote_hash={{b.vote_hash|urlencode}}">view</a>]</td></tr>
+<tr><td><tt style="font-size: 1.4em;">{{b.vote_hash}}</tt> [<a target="_blank" href="?vote_hash={{b.vote_hash|urlencode}}">anzeigen</a>]</td></tr>
 {% endfor %}
 </table>
 {% else %}
-<em>no audited ballots yet</em>
+<em>noch keine &uuml;berpr&uuml;ften Stimmzettel</em>
 {% endif %}
 
 {% endblock %}
