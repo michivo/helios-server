@@ -1,31 +1,31 @@
 {% extends "helios/templates/cryptobase.html" %}
 
-{% block title %}Trustees for {{election.name}}{% endblock %}
+{% block title %}Treuh&auml;nder*innen f&uuml;r {{election.name}}{% endblock %}
 
 {% block content %}
-  <h3 class="title">{{election.name}} &mdash; Trustees <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h3>
+  <h3 class="title">{{election.name}} &mdash; Treuh&auml;nder*innen <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">zur&uuml;ck zur Wahl</a>]</span></h3>
 
 <p>
-    Trustees are responsible for decrypting the election result.<br />
-    Each trustee generates a keypair and submits the public portion to Helios.<br />
-    When it's time to decrypt, each trustee needs to provide their secret key.
+  Treuh&auml;nder*innen sind f&uuml;r das Entschl&uuml;sseln der Wahlergebnisse verantwortlich.<br />
+  Jede*r Treuh&auml;nder*in erzeugt ein Schl&uuml;sselpaar und &uuml;bermittelt den &ouml;ffentlichen Schl&uuml;ssel an diese Wahlseite.<br />
+  F&uuml;r das Entschl&uuml;sseln der Wahlergebnisse muss jede*r Treuh&auml;nder*in ihren*seinen geheimen privaten Schl&uuml;ssel verwenden.
 </p>
 
 {% if not election.frozen_at %}
 
 <p>
-  Helios is automatically your first trustee and will handle its keypair generation and decryption automatically.<br />
-  You may add additional trustees if you want, and you can even remove the Helios trustee.<br />
-  However, we recommend you do this only if you have a solid understanding of the trustee's role.
+  Die Wahlseite hier selbst ist die erste Treuh&auml;nderin, sie erzeugt und verwaltet ihre Schl&uuml;ssel selbst&auml;ndig und automatisch.<br />
+  Du kannst weitere Treuh&auml;nder*innen hinzuf&uuml;gen, wenn du willst. Du kannst sogar die Wahlseite von der Liste der Treuh&auml;nder*innen l&ouml;schen.<br />
+  Wir empfehlen, dass du das allerdings nur dann machst, wenn du ein genaues Verst&auml;ndnis der Treuhandschaft bei der Wahl hast.
 </p>
 
 {% if admin_p %}
 <p>
-    [ <a onclick="return(confirm('Adding your own trustee requires a good bit more work to tally the election.\nYou will need to have trustees generate keypairs and safeguard their secret key.\n\nIf you are not sure what that means, we strongly recommend\nclicking Cancel and letting Helios tally the election for you.'));" href="{% url "election@trustees@new" election.uuid %}">add a trustee</a> ]
+    [ <a onclick="return(confirm('Die Stimmausz&auml;hlung mit eigenen Treuh&auml;nder*innen ist deutlich aufw&auml;ndiger als ohne.\nJede*r Treuh&auml;nder*in muss ein Schl&uuml;sselpaar erzeugen und sich um die sichere Verwahrung des privaten Schl&uuml;ssels k&uuml;mmern.\n\nWenn du nicht genau wei&szlig;t, was du tust, klicke lieber auf\nAbbrechen und &uuml;berlass die Ausz&auml;hlung dieser Wahlseite.'));" href="{% url "election@trustees@new" election.uuid %}">Treuh&auml;nder*in hinzuf&uuml;gen</a> ]
 </p>
 {% if not election.has_helios_trustee %}
 <p>
-    <a href="{% url "election@trustees@add-helios" election.uuid %}">add Helios as a trustee</a>
+    <a href="{% url "election@trustees@add-helios" election.uuid %}">diese Wahlseite als Treuh&auml;nderin hinzuf&uuml;gen</a>
 </p>
 {% endif %}
 {% endif %}
@@ -36,31 +36,31 @@
 
 {% else %}
 {% for t in trustees %}
-<h5> Trustee #{{forloop.counter}}: {{t.name}} 
+<h5> Treuh&auml;nder*in #{{forloop.counter}}: {{t.name}} 
 {% if admin_p %}
 {% if t.secret_key %}
-{% if not election.frozen_at %}[<a onclick="return confirm('Are you sure you want to remove Helios as a trustee?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
+{% if not election.frozen_at %}[<a onclick="return confirm('M&ouml;chtest du diese Wahlseite sicher als Treuh&auml;nderin entfernen?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
 {% else %}
 ({{t.email}})
-{% if not election.frozen_at %}[<a onclick="return confirm('Are you sure you want to remove this Trustee?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
-[<a onclick="return confirm('Are you sure you want to send this trustee his/her admin URL?');" href="{% url "election@trustee@send-url" election.uuid t.uuid %}">send login</a>]
+{% if not election.frozen_at %}[<a onclick="return confirm('M&oum;chtest du diese*n Treuh&auml;nder*in sicher l&ouml;schen?');" href="{% url "election@trustees@delete" election.uuid %}?uuid={{t.uuid}}">x</a>]{% endif %}
+[<a onclick="return confirm('M&ouml;chtest du dieser*m Treuh&auml;nder*in wirklich die Admin-URL schicken?');" href="{% url "election@trustee@send-url" election.uuid t.uuid %}">Login schicken</a>]
 {% endif %}
 {% endif %}
 </h5>
 
 <p>
 {% if t.public_key_hash %}
-  Public Key Fingerprint: <tt style="font-size:1.5em;">{{t.public_key_hash}}</tt>
+  Elektronischre Fingerabdruck des &ouml;ffentlichen Schl&uuml;ssels: <tt style="font-size:1.5em;">{{t.public_key_hash}}</tt>
 {% else %}
-No public key uploaded yet.
+Es wurde noch kein &ouml;ffentlicher Schl&ouml;ssel hochgeladen.
 {% endif %}
 </p>
 
 {% if election.encrypted_tally %}
 {% if t.decryption_factors %}
-<b>tally recorded for this trustee.</b>
+<b>Stimmen f&uuml;r diese*n Treuh&auml;nder*in ausgez&auml;hlt.</b>
 {% else %}
-<em>waiting for this trustee's tally</em>
+<em>Warte auf die Ausz&auml;hlung durch diese*n Treuh&auml;nder*in</em>
 {% endif %}
 {% endif %}
 </li>
