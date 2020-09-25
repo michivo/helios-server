@@ -23,10 +23,6 @@ Helios elections are:
 <li><b>proven</b>: Helios is open-source, vetted by top-tier experts, and in use by major organizations.</li>
 </ul>
 
-<p>
-More than <b>2,000,000 votes</b> have been cast using Helios.
-</p>
-
 {% if create_p %}
 <a class="button" href="{% url "elections@new" %}">create an election</a>
 {% endif %}
@@ -46,7 +42,7 @@ More than <b>2,000,000 votes</b> have been cast using Helios.
     {% endfor %}
   </p>
   {% else %}
-  <h4>no featured elections at the moment</h4>
+  <h4>Derzeit gibt es keine &ouml;ffentlich vorgestellten Wahlen</h4>
   {% endif %}
 {% endif %}
   

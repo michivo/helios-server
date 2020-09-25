@@ -47,7 +47,7 @@ class Election(HeliosModel):
   name = models.CharField(max_length=250)
   
   ELECTION_TYPES = (
-    ('election', 'Election'),
+    ('election', 'Wahl'),
     ('referendum', 'Referendum')
     )
 

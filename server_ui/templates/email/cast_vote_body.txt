@@ -1,12 +1,12 @@
-Dear {{voter.name}},
+Liebe*r {{voter.name}},
 
-You have successfully cast a vote in {{election.name}}.
+Du hast deine Stimme bei der Wahl {{election.name}} erfolgreich abgegeben.
 
-Your ballot is archived at: {{cast_vote_url}}
+Dein Stimmzettel wurde hier archiviert: {{cast_vote_url}}
 
 {% if election.use_voter_aliases %}
-This election uses voter aliases to protect your privacy.
-Your voter alias is: {{voter.alias}}.
+Diese Wahl verwendet Wähler*innen-Aliases, um deine Daten zu schützen.
+Dein Alias ist: {{voter.alias}}.
 {% endif %}
 
 --
