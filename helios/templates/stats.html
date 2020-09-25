@@ -1,15 +1,15 @@
 {% extends TEMPLATE_BASE %}
-{% block title %}Statistics{% endblock %}
+{% block title %}Statistiken{% endblock %}
 
 {% block content %}
 <h1>Admin</h1>
 
 <ul>
-<li> <a href="{% url "stats@elections" %}">elections</a></li>
-<li> <a href="{% url "stats@recent-votes" %}">recent votes</a></li>
-<li> <a href="{% url "stats@elections-problems" %}">recent problem elections</a></li>
+<li> <a href="{% url "stats@elections" %}">Wahlen</a></li>
+<li> <a href="{% url "stats@recent-votes" %}">K&uuml;rzlich abgegebene Stimmen</a></li>
+<li> <a href="{% url "stats@elections-problems" %}">K&uuml;rzlich aufgetretene Probleme bei Wahlen</a></li>
 </ul>
 
-<p><b>{{num_votes_in_queue}}</b> votes in queue. {% if num_votes_in_queue %}[<a href="{% url "stats@force-queue" %}">force it</a>]{% endif %}</p>
+<p><b>{{num_votes_in_queue}}</b> Stimmen in der Warteschlange. {% if num_votes_in_queue %}[<a href="{% url "stats@force-queue" %}">Verarbeitung erzwingen</a>]{% endif %}</p>
 
 {% endblock %}

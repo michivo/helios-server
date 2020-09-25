@@ -1,14 +1,14 @@
 {% extends TEMPLATE_BASE %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Bulk Upload Voters &mdash; Confirm<span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; W&auml;hler*innenliste hochladen &mdash; Best&auml;tigung und Import<span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">zur&uuml;ck zur Wahl</a>]</span></h2>
 
 <p>
-You have uploaded a file of voters. The first few rows of this file are:
+  Du hast eine W&auml;hler*innenliste hochgeladen. Die ersten paar Zeilen der Liste sehen wie folgt aus:
 </p>
 
 <table>
-<tr><th>Voter Login</th><th>Email Address</th><th>Name</th></tr>
+<tr><th>ID</th><th>Email-Adresse</th><th>Name</th></tr>
 {% for v in voters %}
 <tr><td>{{v.voter_id}}</td><td>{{v.email}}</td><td>{{v.name}}</td></tr>
 {% endfor %}
@@ -16,25 +16,25 @@ You have uploaded a file of voters. The first few rows of this file are:
 
 {% if problems %}
 <p style="font-size: 1.5em;">
-HOLD ON:<br />
+VORSICHT, ES GAB PROBLEME:<br />
 {% for problem in problems %}
 - {{problem}}<br />
 {% endfor %}
 </p>
 <br />
 
-<a href="{% url "election@voters@upload-cancel" election.uuid %}">never mind, upload a different file</a>
+<a href="{% url "election@voters@upload-cancel" election.uuid %}">andere Datei hochladen</a>
 </p>
 
 {% else %}
 <p></p>
 <form method="post" action="" id="upload_form">
-  Does this look right to you?
+  Sieht das richtig aus?
   <input type="hidden" name="confirm_p" value="1" />
-  <input type="submit" value="Yes, let's go" />
+  <input type="submit" value="Ja, W&auml;hler*innenliste importieren" />
 </form>
 
-<a href="{% url "election@voters@upload-cancel" election.uuid %}">no, let me upload a different file</a>
+<a href="{% url "election@voters@upload-cancel" election.uuid %}">nein, andere Datei hochladen</a>
 
 {% endif %}
 

@@ -1,30 +1,30 @@
 {% extends TEMPLATE_BASE %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Bulk Upload Voters <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">back to election</a>]</span></h2>
+  <h2 class="title">{{election.name}} &mdash; W&auml;hler*innen-Liste hochladen <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">zur&uuml; zur Wahl</a>]</span></h2>
 
 <form method="post" action="" id="upload_form" enctype="multipart/form-data">
   <p>
-    If you would like to specify your list of voters by name and email address,<br />
-    you can bulk upload a list of such voters here.<br /><br />
+    Hier kannst du W&auml;hler*innen-Listen mit Name, W&auml;hler*innen-ID und E-Mail-Adresse hochladen.<br /><br />
 
-    Please prepare a text file of comma-separated values with the fields:
+    Bitte bereite eine Textdatei im CSV-Format vor, mit Komma als Feldtrenner:
 </p>
 <pre>
-   &lt;unique_id&gt;,&lt;email&gt,&lt;full name&gt;
+   &lt;eindeutige_id&gt;,&lt;email&gt,&lt;name&gt;
 </pre>
 
 <p>
-For example:
+Zum Beispiel:
   </p>
   <pre>
-      benadida,ben@adida.net,Ben Adida
-      bobsmith,bob@acme.org,Bob Smith
+      maria1,maria@musterfrau.at,Maria Musterfrau
+      max1,max@mustermann.at,Max Mustermann
       ...
   </pre> 
 
   <p>
-    The easiest way to prepare such a file is to use a spreadsheet program and to export as "CSV".
+    Am einfachsten lassen sich solche List mit Excel, Google Sheets oder LibreOffice Calc erstellen.
+    Exportiere die Daten als CSV-Datei, stelle sicher dass der Feldtrenner ein Komma (kein Semikolon!) ist.
   </p>
   {% if error %}
   <div style="color: red;">{{error}}</div>
@@ -32,15 +32,15 @@ For example:
     <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
     <input type="file" name="voters_file" />
-    <input type="submit" value="go" />
+    <input type="submit" value="ok" />
 </form>
 
 <div id="processing">
 </div>
 
 <div id="done" style="display:none;">
-  OK, done uploading.<br />
-  You can now <a href="./manage">view the list of voters</a>.
+  OK, fertig mit dem Hochladen.<br />
+  Du kannst die Liste der W&auml;hler*innen nun <a href="./manage">ansehen</a>.
 </div>
 
 {% endblock %}
