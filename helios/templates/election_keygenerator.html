@@ -99,79 +99,82 @@ function show_pk() {
 
 </script>
 
-<h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} &mdash; Key Setup</h2>
+<h2 class="title">{{election.name}} &mdash; Treuh&auml;nder*in {{trustee.name}} &mdash; Schl&uuml;sselerstellung</h2>
 
 <p>
-  As a trustee, it's time to set up your key for this election.
+    Als Treuh&auml;nder*in muss jetzt dein Schl&uuml;ssel f&uuml;r diese Wahl erstellt werden.
 </p>
 
 <p id="waiting_message">
-  Please wait for the generator to load...
+        Bitte warte, w&auml;hrend der Schl&uuml;sselgenerator geladen wird...
 </p>
 
 <p id="generator">
 
-<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">Generate Election Keys</button></span>
+<span id="buttons"><button onclick="generate_keypair(); return false;" id="generate_button">Wahl-Schl&uuml;ssel erstellen</button></span>
 
 <br />
-If you've already generated a keypair, you can <a href="javascript:show_key_reuse()">reuse it</a>.
+Wenn du bereits ein Schl&uuml;sselpaar erstellt hast, kannst du es <a href="javascript:show_key_reuse()">wiederverwenden</a>.
 </p>
 
 <div id="reuse">
-<h3>Reusing a Key</h3>
+<h3>Schl&uuml;ssel wiederverwenden</h3>
 
 <p>
-Enter your complete secret key below:
+    Gib deinen ganzen geheimen Schl&uuml;ssel hier ein:
 </p>
 <form onsubmit="reuse_key(this.secret_key.value); return false;">
 <textarea cols="80" rows="5" wrap="soft" name="secret_key">
 </textarea>
 <br />
-<input type="submit" value="reuse" />
+<input type="submit" value="Wiederverwenden" />
 </form>
 </div>
 
 <div id="sk_download">
-<h3>Your Secret Key</h3>
+<h3>Dein geheimer Schl&uuml;ssel</h3>
 <span id="clear_button">
-Your key has been generated, but you may choose to<br /><a href="javascript:clear_keys();">clear it from memory and start from scratch</a> if you prefer.<br />
+    Dein Schl&uuml;ssel wurde erzeugt, aber du kannst ihn 
+    <br /><a href="javascript:clear_keys();">verwerfen und wieder neu beginnen</a>, wenn du willst.<br />
 </span>
 
 <p>
-    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">Show my secret key</button>
+    <button style="font-size:16pt;" onclick="download_sk(); $('#pk_link').show();">Zeige meinen geheimen Schl&uuml;ssel</button>
 </p>
 </div>
 
 <div style="display:none;" id="pk_content">
-    <p>Bellow is your trustee secret key content. Please copy its content and save it securely. <br>
-       You can also click to dowload it to a file.
-       And please don't lose it! Otherwise it will not be possible to decrypt the election tally.<br>
+    <p>
+        Hier ist ein geheimer Treuhand-Schl&uuml;ssel. Bitte kopiere ihn und bewahre ihn sicher auf.<br>
+        Bellow is your trustee secret key content. Please copy its content and save it securely. <br>
+       Du kannst ihn auch herunterladen und als Datei speichern. Und bitte verliere den Schl&uuml;ssel nicht, ohne Schl&uuml;ssel
+       k&ouml;nnen die Stimmen nicht ausgez&auml;hlt werden!<br>
     </p>
     <textarea id="sk_content" rows="5" wrap="soft" cols="50" style="height: 25em;"></textarea>
 </div>
 
 <div style="display:none;" id="pk_link">
 <p>
-<a id="download_to_file" href="javascript:download_sk_to_file('trustee_key_for_{{election.name}}.txt');">download private key to a file</a>
+<a id="download_to_file" href="javascript:download_sk_to_file('trustee_key_for_{{election.name}}.txt');">Privaten Schl&uuml;ssel herunterladen</a>
 </p>
 <p>
-  <a href="javascript:show_pk();">ok, I've saved the key, let's move on</a>
+  <a href="javascript:show_pk();">OK, ich habe den Schl&uuml;ssel gesichert, weiter geht's!</a>
 </p>
 </div>
 
 <form method="post" id="pk_form" action="{% url "election@trustee@upload-pk" election.uuid trustee.uuid %}">
-<h3>Your Public Key</h3>
+<h3>Dein &ouml;ffentlicher Schl&uuml;ssel</h3>
 <p>
-    It's time to upload the public key to the server.
+    Jetzt kann dein &ouml;ffentlicher Schl&uuml;ssel zum Server &uuml;bertragen werden.
 </p>
 <p>
-    The fingerprint of your public key is: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
-    You may want to save this to confirm that your public key was properly stored by the server.<br />
-    (Your public key is not currently being displayed because you do not need to save it, the fingerprint is sufficient.)
+    Der elektronische Fingerabdruck deines &ouml;ffentlichen Schl&uuml;ssels ist: <tt id="pk_hash" style="font-size: 1.5em; font-weight: bold;"></tt>.<br />
+    Du kannst auch diesen Schl&uuml;ssel speichern um sicherzustellen, dass dein Schl&uuml;ssel korrekt am Server abgelegt wurde.<br />
+    (Dein &ouml;ffentlicher Schl&uuml;ssel wird nicht vollst&auml;ndig angezeigt, hier reicht der elektronische Fingerabdruck.)
 </p>
 <textarea id="pk_textarea" name="public_key_json" cols="80" rows="10" style="display:none;">
 </textarea>
-<input type="submit" value="Upload your public key">
+<input type="submit" value="&Ouml;ffentlichen Schl&uuml;ssel an Server &uuml;bertragen">
 </form>
 
 <div id="applet_div"></div>

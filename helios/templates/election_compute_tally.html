@@ -1,30 +1,31 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Compute Encryted Tally for {{election.name}}{% endblock %}
+{% block title %}Z&auml;hle Stimmen aus f&uuml;r {{election.name}}{% endblock %}
 
 {% block content %}
-  <h2 class="title">Compute Tally for Election: {{election.name}}</h2>
+  <h2 class="title">Verschl&uuml;sselte Simmausz&auml;hlung: {{election.name}}</h2>
 
 <div id="instructions">
 {% if election.num_cast_votes %}
 <p>
-    You are about to compute the encrypted tally for election <b>{{election.name}}</b>.
+    Du bist dabei, die Stimmen f&uuml;r <b>{{election.name}}</b> auszuz&auml;hlen.
 </p>
 
 <p>
-    Once you do this, voters will no longer be able to cast a ballot.
+    Wenn du das machst, werden W&auml;hler*innen nicht mehr in der Lage sein, Stimmen abzugeben!
 </p>
 
-<form method="post" action="" onsubmit="alert('ok, tally has begun')" class="pretty">
+<form method="post" action="" onsubmit="alert('OK, Stimmz&auml;hlung hat begonnen')" class="pretty">
 <input type="hidden" name="csrf_token" value="{{csrf_token}}" />
     
-<input class="button" type="submit" value="compute encrypted tally!" />
-<button onclick="document.location='{% url "election@view" election.uuid %}'; return false;">never mind</button>
+<input class="button" type="submit" value="Verschl&uuml;sselte Ausz&auml;hlung beginnen!" />
+<button onclick="document.location='{% url "election@view" election.uuid %}'; return false;">Doch nicht...</button>
 </form>
 {% else %}
 <p>
-No votes have been cast in this election. At least one vote must be cast before you compute the tally.<br /><br />
-<a href="{% url "election@view" election.uuid %}">back to election</a>
+  Es wurden keine Stimmen bei dieser Wahl abgegeben. Mindestens eine Stimme muss abgegeben werden, damit die Stimmausz&auml;hlung
+  durchgef&uuml;hrt werden kann.<br /><br />
+<a href="{% url "election@view" election.uuid %}">zur&uuml;ck zur Wahl</a>
 </p>
 {% endif %}
 </div>
