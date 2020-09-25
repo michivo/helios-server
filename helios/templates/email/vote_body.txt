@@ -24,4 +24,4 @@ Dein Alias ist {{voter.alias}}.
 WICHTIG: Wenn du abstimmst, musst du deine Wähler*innen-ID angeben, nicht deinen Alias!
 {% endif %}
 --
-Helios
+Freie Wahl/Helios

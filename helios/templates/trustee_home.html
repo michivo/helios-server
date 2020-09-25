@@ -1,29 +1,29 @@
 {% extends "helios/templates/cryptobase.html" %}
 
 {% block content %}
-  <h2 class="title">{{election.name}} &mdash; Trustee {{trustee.name}} Home</span></h2>
+  <h2 class="title">{{election.name}} &mdash; Treuh&auml;nder*in {{trustee.name}}</span></h2>
 
 <p>
 {% if trustee.public_key_hash %}
-You have successfully uploaded your public key.<br />
-Your public key fingerprint is: <b>{{trustee.public_key_hash}}</b>.<br />
-You can <a href="{% url "election@trustee@check-sk" election.uuid trustee.uuid %}">verify that you have the right secret key</a>.
+Du hast deinen &ouml;ffentlichen Schl&uuml;ssel erfolgreich hochgeladen.<br />
+Der elektronische Fingerabdruck des Schl&uumlssels ist: <b>{{trustee.public_key_hash}}</b>.<br />
+Du kannst <a href="{% url "election@trustee@check-sk" election.uuid trustee.uuid %}">verifizieren, dass du den richtigen geheimen Schl&uuml;ssel hast.</a>.
 {% else %}
-<a href="{% url "election@trustee@key-generator" election.uuid trustee.uuid %}">setup your key</a>
+<a href="{% url "election@trustee@key-generator" election.uuid trustee.uuid %}">Schl&uuml;ssel einrichten</a>
 {% endif %}
 </p>
 
 <p>
 {% if election.encrypted_tally %}
 {% if trustee.decryption_factors %}
-You have successfully uploaded your decryption.
+Du hast deine Entschl&uuml;sselungsdaten erfolgreich hochgeladen.
 {% else %}
-    The encrypted tally for this election is ready.<br />
-    <a href="{% url "election@trustee@decrypt-and-prove" election.uuid trustee.uuid %}">decrypt with your key</a>
+    Das verschl&uuml;sselte Wahlergebnis ist bereit.<br />
+    <a href="{% url "election@trustee@decrypt-and-prove" election.uuid trustee.uuid %}">Entschl&uuml;ssle es mit deinem geheimen Schl&uuml;ssel</a>
 {% endif %}
 {% else %}
-Once the tally is computed, come back here to provide your secret key for decryption purposes.<br />
-You should keep the email with your trustee homepage link, which contains the credentials needed to get back here.
+Wenn das Wahlergebnis berechnet ist, komme hierher zur&uuml;ck um es mit deinem geheimen Schl&uuml;ssel zu entschl&uuml;sseln.<br />
+Du solltest die Mail mit dem Link zu dieser Seite aufbewahren, sie enth&auml;lt die Zugansdaten f&uuml;r diese Seite.
 {% endif %}
 </p>
 
