@@ -37,6 +37,61 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
+* to start Helios as a service using systemd
+
+add a service definition (e.g. helios.service) in /etc/systemd/system with the following content:
+
+```
+[Unit]
+Description=Helios Voting
+After=network.target
+
+[Service]
+Type=simple
+Environment=EMAIL_USE_AWS=0
+Environment=HELIOS_DIR=*TODO*
+WorkingDir=${HELIOS_DIR}
+ExecStart=/bin/bash -c '${HELIOS_DIR}/venv/bin/python ${HELIOS_DIR}/manage.py runserver'
+User=*TODO*
+Group=*TODO*
+
+[Install]
+WantedBy=multi-user.target
+```
+
+You also need to install rabbitmq:
+
+```
+sudo apt install rabbitmq-server
+```
+And add a celery message broker service (helios-celery.service):
+
+```
+[Unit]
+Description=Helios Voting Celery Message Broker
+After=network.target
+
+[Service]
+Type=simple
+Environment=HELIOS_DIR=*TODO*
+ExecStart=/bin/bash -c 'cd ${HELIOS_DIR} && source venv/bin/activate && celery worker --app helios --events --beat --concurrency 1 --logfile celeryw.log --pidfile celeryw.pid'
+WorkingDir=${HELIOS_DIR}
+User=*TODO*
+Group=*TODO*
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Then add, enable and start the services:
+```
+sudo systemctl daemon-reload
+sudo systemctl enable helios
+sudo systemctl start helios
+sudo systemctl enable helios-celery
+sudo systemctl start helios-celery
+```
+
 * to get Google Auth working:
 
 ** go to https://console.developers.google.com
