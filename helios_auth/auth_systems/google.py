@@ -13,7 +13,7 @@ from oauth2client.client import OAuth2WebServerFlow
 STATUS_UPDATES = False
 
 # display tweaks
-LOGIN_MESSAGE = "Log in with my Google Account"
+LOGIN_MESSAGE = "Mit Google-Account anmelden"
 
 def get_flow(redirect_url=None):
   return OAuth2WebServerFlow(client_id=settings.GOOGLE_CLIENT_ID,
@@ -39,7 +39,7 @@ def get_user_info_after_auth(request):
   # the email address is in the credentials, that's how we make sure it's verified
   id_token = credentials.id_token
   if not id_token['email_verified']:
-    raise Exception("email address with Google not verified")
+    raise Exception("E-Mail-Adresse von Google nicht verifiziert")
    
   email = id_token['email']
 
@@ -48,6 +48,7 @@ def get_user_info_after_auth(request):
   http = credentials.authorize(http)
   (resp_headers, content) = http.request("https://people.googleapis.com/v1/people/me?personFields=names", "GET")
 
+  print(content)
   response = json.loads(content)
 
   name = response['names'][0]['displayName']

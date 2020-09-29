@@ -100,6 +100,6 @@ sudo systemctl start helios-celery
 
 ** set up oauth2 credentials as a web application, with your origin, e.g. https://myhelios.example.com, and your auth callback, which, based on our example, is https://myhelios.example.com/auth/after/
 
-** still in the developer console, enable the Google+ API.
+** still in the developer console, enable the [People API](https://console.developers.google.com/apis/api/people.googleapis.com/overview).
 
 ** set the GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET configuration variables accordingly.
