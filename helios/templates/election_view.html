@@ -1,6 +1,17 @@
 {% extends TEMPLATE_BASE %}
 {% block title %}{{election.name}}{% endblock %}
 {% block content %}
+<script type='javascript'>
+  function translateElectionType(electionType) {
+    if (electionType === 'election') {
+      return 'Wahl';
+    }
+    if (electionType === 'referendum') {
+      return 'Referendum';
+    }
+    return electionType;
+  }
+</script>
 <div style="float: left; margin-right: 50px;">
   <h3 class="title">{{ election.name }}
 {% if admin_p %}
@@ -9,7 +20,7 @@
 {% endif %}
 {% endif %}</h3>
 <p style="padding-top:0px; margin-top:0px">
-<em>{% if election.private_p %}private{%else%}&ouml;ffentliche{% endif %}</em> {{ election.election_type }}{% if settings.SHOW_USER_INFO %} erstellt von <u><b>{{election.admin.display_html_small|safe}}</b></u>{% endif %}
+<em>{% if election.private_p %}private{%else%}&ouml;ffentliche{% endif %}{% ifequal election.election_type "election" %}</em> Wahl{% else %}s</em> Referendum{% endifequal %}{% if settings.SHOW_USER_INFO %} erstellt von <u><b>{{election.admin.display_html_small|safe}}</b></u>{% endif %}
 {% if election.is_archived %}
 [archiviert]
 {% endif %}
@@ -21,12 +32,12 @@
 {% if admin_p %}
 {% if not election.private_p %}
 {% if election.featured_p %}
-Diese(s) {{election.election_type}} wird auf der Startseite gezeigt.
+Diese{% ifequal election.election_type "election" %} Wahl{% else %}s Referendum{% endifequal %} wird auf der Startseite gezeigt.
 {% if can_feature_p %}
 [<a href="{% url "election@set-featured" election.uuid %}?featured_p=0">von der Startseite entfernen</a>]
 {% endif %}
 {% else %}
-Diese(s) {{election.election_type}} wird <u>nicht</u> gezeigt.
+Diese{% ifequal election.election_type "election" %} Wahl{% else %}s Referendum{% endifequal %} wird <u>nicht</u> auf der Startseite gezeigt.
 {% if can_feature_p %}
 [<a href="{% url "election@set-featured" election.uuid %}?featured_p=1">Auf der Startseite zeigen</a>]
 {% endif %}
@@ -176,18 +187,18 @@ Administrator angezeigt.
 {% else %}
 
 {% if election.voting_has_started %}
-<a class="button" href="{{test_cookie_url}}">Stimme ab in dieser/diesem {{election.election_type}} </a>
+<a class="button" href="{{test_cookie_url}}">Stimme ab in diese{% ifequal election.election_type "election" %}r Wahl{% else %}m Referendum{% endifequal %}  </a>
 <br />
 <br />
 {% if election.voting_extended_until %}
-Diese(s) {{election.election_type}} h&auml;tte urspr&uuml;nglich um {{election.voting_ends_at}} (UTC) enden sollen,<br />
+Diese{% ifequal election.election_type "election" %} Wahl{% else %}s Referendum{% endifequal %}  h&auml;tte urspr&uuml;nglich um {{election.voting_ends_at}} (UTC) enden sollen,<br />
 wurde aber bis {{ election.voting_extended_until }} (UTC) verl&auml;ngert.
 {% else %}
 {% if election.voting_ends_at %}
 <br />
-Diese(s) {{election.election_type}} endet planm&auml;&szlig;ig um {{election.voting_ends_at}} (UTC).
+Diese{% ifequal election.election_type "election" %} Wahl{% else %}s Referendum{% endifequal %}  endet planm&auml;&szlig;ig um {{election.voting_ends_at}} (UTC).
 {% else %}
-Diese(s) {{election.election_type}} endet nach Ermessen des Administrators.
+Diese{% ifequal election.election_type "election" %} Wahl{% else %}s Referendum{% endifequal %}  endet nach Ermessen des Administrators.
 {% endif %}
 <br />
 {% endif %}
@@ -211,7 +222,7 @@ Diese Wahl ist <em>privat</em>. Du bist als wahlberechtigte*r W&auml;hler*in <em
 {% if user %}
 {% if voter %}
 <p style="padding-top:1px;">
-  Du bist als W&auml;hler*in in dieser/diesem {{election.election_type}} registriert.
+  Du bist als W&auml;hler*in in diese{% ifequal election.election_type "election" %}r Wahl{% else %}m Referendum{% endifequal %}  registriert.
 {% if election.use_voter_aliases %}
 Dein W&auml;hler*innen-Alias ist {{voter.alias}}.
 {% endif %}

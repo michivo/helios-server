@@ -19,9 +19,9 @@ class ElectionForm(forms.Form):
   election_type = forms.ChoiceField(label="Typ", choices = Election.ELECTION_TYPES)
   use_voter_aliases = forms.BooleanField(required=False, initial=True, label='Aliase verwenden', help_text='Wenn angehakt, werden die W&auml;hler*innen-Namen im Tracking-Center durch Aliases (wie "V42") ersetzt')
   #use_advanced_audit_features = forms.BooleanField(required=False, initial=True, help_text='disable this only if you want a simple election with reduced security but a simpler user interface')
-  randomize_answer_order = forms.BooleanField(required=False, label='Antworten in randomisierter Reihenfolge', initial=False, help_text='Wenn angehakt, werden die Wahlm&ouml;glichkeiten den W&auml;hler*innen in zuf&auml;lliger Reihenfolge angezeigt')
-  private_p = forms.BooleanField(required=False, initial=True, label="Privat?", help_text='Eine private Wahl ist nur f&uuml;r registrierte W&auml;hler*innen sichtbar.')
-  help_email = forms.CharField(required=False, initial="", label="Kontaktadress", help_text='Eine Email-Adresse, an die sich W&auml;hler*innen wenden k&ouml;nnen, wenn sie Hilfe brauchen.')
+  randomize_answer_order = forms.BooleanField(required=False, label='Antworten in zufälliger Reihenfolge', initial=False, help_text='Wenn angehakt, werden die Wahlm&ouml;glichkeiten den W&auml;hler*innen in zuf&auml;lliger Reihenfolge angezeigt')
+  private_p = forms.BooleanField(required=False, initial=True, label="Private Wahl", help_text='Eine private Wahl ist nur f&uuml;r registrierte W&auml;hler*innen sichtbar.')
+  help_email = forms.CharField(required=False, initial="", label="Kontaktadresse", help_text='Eine Email-Adresse, an die sich W&auml;hler*innen wenden k&ouml;nnen, wenn sie Hilfe brauchen.')
   
   if settings.ALLOW_ELECTION_INFO_URL:
     election_info_url = forms.CharField(required=False, initial="", label="URL mit Wahlinformationen", help_text="Die URL eines Dokuments mit weiterf&uuml;hrenden Informationen zur Wahl, z.B. Biographien der Kandidat*innen, ...")

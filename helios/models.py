@@ -356,27 +356,27 @@ class Election(HeliosModel):
     if self.questions == None or len(self.questions) == 0:
       issues.append(
         {'type': 'questions',
-         'action': "add questions to the ballot"}
+         'action': "Fragen zum Stimmzettel hinzufügen"}
         )
   
     trustees = Trustee.get_by_election(self)
     if len(trustees) == 0:
       issues.append({
           'type': 'trustees',
-          'action': "add at least one trustee"
+          'action': "Mindestens eine*n Treuhänder*in hinzufügen"
           })
 
     for t in trustees:
       if t.public_key == None:
         issues.append({
             'type': 'trustee keypairs',
-            'action': 'have trustee %s generate a keypair' % t.name
+            'action': 'Treuhänder*in %s muss ein Schlüsselpaar erzeugen' % t.name
             })
 
     if self.voter_set.count() == 0 and not self.openreg:
       issues.append({
           "type" : "voters",
-          "action" : 'enter your voter list (or open registration to the public)'
+          "action" : 'Wähler*innenliste eingeben (oder die Wahl öffentlich machen)'
           })
 
     return issues    
@@ -500,7 +500,7 @@ class Election(HeliosModel):
     election is frozen when the voter registration, questions, and trustees are finalized
     """
     if len(self.issues_before_freeze) > 0:
-      raise Exception("cannot freeze an election that has issues")
+      raise Exception("Wahl mit offenen Problemen kann nicht eingefroren werden")
 
     self.frozen_at = datetime.datetime.utcnow()
     
@@ -587,9 +587,9 @@ class Election(HeliosModel):
   @property
   def registration_status_pretty(self):
     if self.openreg:
-      return "Open"
+      return "Offen"
     else:
-      return "Closed"
+      return "Geschlossen"
 
   @classmethod
   def one_question_winner(cls, question, result, num_cast_votes):
