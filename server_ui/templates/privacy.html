@@ -28,7 +28,7 @@
 
 <hr>
 
-<h3>F&uuml; W&auml;hler*innen</h3>
+<h3>F&uuml;r W&auml;hler*innen</h3>
 
 <p><b>&Uuml;ber deine Stimme:</b></p>
 
@@ -37,31 +37,34 @@
 <li> Wir verwenden SSL-Verschl&uuml;sselung, um Daten zwischen deinem Browser und unserem Server zu &uuml;bertragen.</li>
 <li> Zus&auml;tzlich verwenden wir Ende-zu-Ende-Verschl&uuml;sselung, deine Stimme ist also auch nach der SSL-Entschl&uuml;sselung <b>noch immer verschl&uuml;sselt</b>, und zwar mit dem Wahl-Schl&uuml;ssel. Helios-Server sehen deine Stimme nie.</li>
 <li> Im normalen Prozess einer Wahl bei Helios wird deine Stimme als solche nie entschl&uuml;sselt. Die verschl&uuml;sselten Stimmen werden mit einem Verfahren namens homomorpher Verschl&uuml;sselung in einem verschl&uuml;sselten Ergebnis zusammengef&uuml;hrt. Nur dieses Ergebnis &mdash; niemals eine einzelte Stimme oder ein Zwischenergebnis &mdash; wird entschl&uuml;sselt.</li> 
-<li> The trustees of your election, if they all collude, technically have the power to decrypt your individual vote. This action is strongly discouraged and is against Helios policy. It is why high-security elections should use at least 3 trustees with different allegiances. </li>
-<li> Helios may, at your election administrators' discretion, serve as a trustee of your election. This does <em>not</em> give Helios any power to decrypt your vote. In fact, it is probably preferable, since without Helios's collaboration, the remaining trustees cannot decrypt individual votes. It is our policy that Helios, when acting as a trustee, will only decrypt the election tally, never an individual vote.</li>
-<li> When Helios is not acting as a trustee of your election, Helios has no power to decrypt any individual vote.</li>
+<li> Wenn alle Treuh&auml;nder*innen deiner Wahl zusammenarbeiten, k&ouml;nnen sie theoretisch jede einzelne Stimme entschl&uuml;sseln. Davon wird aber dringendst abgeraten, es widerspricht den Grunds&auml;tzen von Helios. Deswegen sollten kritische Wahlen mit hohen Sicherheitsanforderungen mindestens 3 Treuh&auml;nder*innen aus unterschiedlichen Interessensgruppen haben. </li>
+<li> Helios kann selbst, wenn es dein Administrator will, selbst als Treuh&auml;nderin deiner Wahl fungieren, das ist 
+    sogar die Standardeinstellung. Das macht es f&uuml; Helios allerdings <b>nicht</b> m&ouml;glich, einzelne Stimmen 
+    zu entschl&uuml;sseln. Wir raten sogar dazu, Helios als Treuh&auml;nderin einzusetzen, weil die &uuml;brigen 
+    Treuh&auml;nder*innen so nicht in der Lage sind, einzelne Stimmen zu entschl&uuml;sseln. 
+    Gem&auml;&szlig; unserer Richtlinien wird Helios als Treuh&auml;nderin, nur das Wahlergebnis entschl&uuml;sseln, nie eine einzelne Stimme.</li>
+<li> Wenn Helios nicht als Treuh&auml;nderin deiner Wahl fungiert, ist Helios nicht in der Lage, Wahlergebnisse zu entschl&uuml;sseln.</li>
 </ul>
 
-<p><b>About non-vote data:</b></p>
+<p><b>Daten, die keinen Bezug zu unseren Wahlen haben:</b></p>
 
 <ul>
-<li> To vote, you will need to present credentials to prove your eligibility. Depending on how your election was set up, this may be a username and password that were generated for you, or a Facebook, Google, Yahoo, or Twitter login. Helios uses the appropriate login interfaces to those external services so that it never has access to your credentials at those services. </li>
-<li> For the purposes of election auditing, Helios stores your name, email address, and the minimal eligibility information needed to qualify you, for example the Facebook group that you belong to that was designated as the eligibility requirement for this election.</li>
-<li> The complete metadata of your vote: where you voted from, what time you voted, and how often you vote (only the last vote counts!), are stored in Helios and may be made available to your election administrators as part of the auditing process. This is critical for ensuring a secure and trustworthy election.</li>
-<li> If your election was made public by the administrator, then some core auditing information is made available to the public: the fact that you voted, the time of your vote, and its tracking number. If your administrator chose to use voter aliases, then your name will be replaced by your pseudonymous voter ID in that dataset. In all cases, Helios takes care to mask or fully hide your email address to prevent email harvesting for spam.</li>
-<li> If your election was made private, then this same information is available to only you, your fellow voters, and your election administrators.</li>
+<li> Wenn du abstimmst, must du Zugangsdaten eingeben um nachzuweisen, dass du wahlberechtigt bist. Abhängig von der Konfiguration deiner Wahl, kann das Benutzername &amp; Passwort sein oder ein Google-Login. Helios verwendet lediglich die Login-Schnittstelle von Google, hat also nie selbst Zugriff auf deine Login-Daten. </li>
+<li> Zum &Uuml;berpr&uuml;fen von Wahlen speichert Helios deinen Namen, deine E-Mail-Adresse und jene Informationen, die notwendig sind, um deine Berechtigungen bei einer Wahl festzulegen.</li>
+<li> Die vollst&auml;ndigen Metadaten zu deiner Stimme: Von wo du abgestimmt hast, wann du abgestimmt hast, wie oft du abgestimmt hast (es z&auml;hlt ja nur die letzte Stimme!) werden von Helios gespeichert und stehen dem Administrator deiner Wahl zur Verf&uuml;gung, um die Korrektheit der Wahl &uuml;berpr&uuml;fen zu k&ouml;nnen. Das ist erforderlich, um eine sichere und vertrauensw&uuml;rdige Wahl zu erm&ouml;glichen.</li>
+<li> Wenn deine Wahl eine &ouml;ffentliche Wahl ist, dann werden einige Daten die zur Pr&uuml;fung des Wahlergebnisses ben&ouml;tigt werden, offen zug&auml;nglich: Die Tatsache, dass du abgestimmt hast, wann du abgestimmt hast und eine Tracking-Nummer. Wenn dein Administrator eingestellt hat, dass Aliases verwendet werden, wird dein Name durch deine Voter ID ersetzt. In jedem Fall wird Helios deine E-Mail-Adresse verstecken oder maskieren, damit deine E-Mail-Adresse nicht von Spammern abgegriffen werden kann.</li>
+<li> Wenn deine Wahl pruvat ist, sind diese Informationen nur dir, den anderen W&auml;hler*innen und der*m Administrator*in zug&auml;nglich.</li>
 </ul>
 
 <h3>F&uuml;r Administrator*innen</h3>
 
-
 <ul>
-<li> As an administrator, you have the power to designate who can vote, when the election starts, when the election stops, and when the results are released. Other than that, you have no power beyond what voters in your election have. This is by design.</li>
-<li> To create and administer an election, you will need to log in using Google, Facebook, Yahoo, or Twitter. Helios queries and retains only the basic information needed to authenticate you the next time around: your name, email address, and user ID. Helios will use this information to message you when your election requires attention.</li>
+<li> Als Administrator*in liegt es in deiner Macht zu entscheiden, wer w&auml;hlen darf, wor&uuml;ber abgestimmt wird, wann die Wahl beginnt, wann sie endet und wann die Ergebnisse ver&ouml;ffentlicht werden. Abgesehen davon hast du keine Berechtigungen, die deine W&auml;hler*innen nicht auch haben. Das ist so beabsichtigt.</li>
+<li> Um als Wahlen erstellen und verwalten zu k&ouml;nnen, musst du dich mit einem Google-Account anmelden. Helios speichert nur die Daten, die gebraucht werden, damit du auch das n&auml;chste Mal mit deinen Wahlen arbeiten kannst: Name, E-Mail-Adresse und Benutzer-ID. Helios wird dich nur dann kontaktieren, wenn deine Wahl deine Aufmerksamkeit braucht.</li>
 </ul>
 
 <h3>Standard-Datenschutzerkl&auml;rung - Erkl&auml;rung zur Informationspflicht</h3>
-
+<p>
 Der Schutz Ihrer pers&ouml;nlichen Daten ist uns ein besonderes Anliegen. 
 Wir verarbeiten Ihre Daten daher ausschlie&szlig;lich auf Grundlage der gesetzlichen Bestimmungen 
 (DSGVO, TKG 2003). In diesen Datenschutzinformationen informieren wir Sie &uuml;ber die wichtigsten Aspekte der 
@@ -70,16 +73,16 @@ Datenverarbeitung im Rahmen unserer Website. <br><br>
 Beim Besuch unserer Webseite wird Ihre IP-Adresse, Beginn und Ende der Sitzung f&uuml;r die Dauer dieser Sitzung 
 erfasst. Dies ist technisch bedingt und stellt damit ein berechtigtes Interesse iSv Art 6 Abs 1 lit f DSGVO dar. 
 Soweit im Folgenden nichts anderes geregelt wird, werden diese Daten von uns nicht weiterverarbeitet.
-
+</p>
 <h4>Kontakt mit uns</h4>
-
+<p>
 Wenn Sie per Formular auf der Website oder per E-Mail Kontakt mit uns aufnehmen, werden Ihre angegebenen Daten
 zwecks Bearbeitung der Anfrage und f&uuml;r den Fall von Anschlussfragen sechs Monate bei uns gespeichert. 
 Diese Daten geben wir nicht ohne Ihre Einwilligung weiter. 
-
+</p>
 
 <h4>Cookies</h4>
-
+<p>
 Unsere Website verwendet so genannte Cookies. Dabei handelt es sich um kleine Textdateien, 
 die mit Hilfe des Browsers auf Ihrem Endger&auml;t abgelegt werden. Sie richten keinen Schaden an.<br><br>
 
@@ -93,8 +96,8 @@ das Setzen von Cookies informiert und Sie dies nur im Einzelfall erlauben.<br><b
 Bei der Deaktivierung von Cookies kann die Funktionalit&auml;t unserer Website eingeschr&auml;nkt sein.
 
 Unseren Vertreter erreichen Sie unter
-Michael Faschinger - michael@freiewahl.at
-
+Michael Faschinger - <a href="mailto:michael@freiewahl.at">michael@freiewahl.at</a>
+</p>
 </div>
 
 </div>
