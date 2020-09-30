@@ -11,47 +11,80 @@
 <div class="row"><h2>FAQ</h2></div>
 
 <div class="row">
-<b>What makes Helios different/better than other voting systems?</b>
+<b>Warum ist Helios anders/besser als andere Wahlsysteme?</b>
 
-<p>Helios is truly verifiable. Each voter obtains a smart ballot tracker which can be checked against the Ballot Tracking Center to ensure that the ballot was received and tallied appropriately. What this means is that no one, not even the administrators of the Helios Voting system, can alter your vote.
+<p>Helios ist <em>echt verifizierbar</em>. Jede*r W&auml;hler*in erh&auml;lt einen Smarten Stimmzettel-Tracker,
+  mit dem man die korrekte Verarbeitung und Z&auml;hlung jedes Stimmzettels im Stimmzettel-Tracking-Center &uuml;berpr&uuml;fen
+  kann. Niemand, auch nicht die Administrator*innen der Wahl k&ouml;nnen deine Stimme nachtr&auml;glich a&uuml;ndern.
 </p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
-<b>I’ve heard of “voter-verifiable” before, what’s different about Helios?</b>
-<p>Many voting systems claim to be voter-verifiable. We believe voter-verifiability is critically important, and we support the efforts of other organizations to help improve the voting machines used in public-office elections. However, we believe that more extensive verifiability is needed, with voters able to ensure that the tallying process, not just the recording of their ballot, was performed correctly. We call that “true verifiability.” Others have called this concept “end-to-end verifiability” or “open-audit.”</p>
+<b>Ich habe schon von "Verifizierbarkeit durch W&auml;hler*innen" geh&ouml;hrt, was ist da bei Helios anders?</b>
+<p>Viele andere Wahlsysteme behaupten, dass sie von W&auml;hler*innen verifizierbar sind. Wir sind der Meinung,
+  dass W&auml;hler*innen-Verifizierbarkeit unabdingbar ist. Die Entwickler*innen von Helios unterst&uuml;tzen
+  andere Organisationen dabei, Wahlmaschinen in &ouml;ffentlichen Wahlen (z.B. in den USA) sicherer und besser zu machen.
+  Wir glauben allerdings auch, dass eine bessere Verifizierbarkeit n&ouml;tig ist, damit W&auml;hler*innen
+  dem Ausz&auml;hlprozess mehr vertrauen k&ouml;nnen und sie sichergehen k&ouml;nnen, dass ihre Stimme nicht
+  nur korrekt erfasst, sondern im Ergebnis auch korrekt gez&auml;hlt wurde. Wir bezeichnen das als
+<em>echte Verifizierbarkeit</em>. Andere bezeichnen dieses Konzept als "Ende-zu-Ende-Verifizierbarkeit" oder
+"Open Audit".
+</p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
 <b>How secret is my vote on Helios?</b>
-<p>Helios takes great care to protect the secrecy of your vote. On most modern web browsers, your vote is encrypted inside your browser, before it is even sent to the server. Even on older browsers, your vote is encrypted before you log into Helios. In all cases, your vote is stored in the database only in encrypted form. Helios then uses advanced cryptographic techniques to combine all of the encrypted votes into an encrypted tally, and only the tally is decrypted. This means that your ballot is never individually decrypted. To provide for the highest level of privacy, Helios lets election administrators designate multiple trustees. All trustees must be involved in decryption, which further ensures that only the tally, never the individual votes, are decrypted.</p>
+<p>Helios takes great care to protect the secrecy of your vote. On most modern web browsers, your vote is encrypted 
+  inside your browser, before it is even sent to the server. Even on older browsers, your vote is encrypted before you 
+  log into Helios. In all cases, your vote is stored in the database only in encrypted form. Helios then uses advanced 
+  cryptographic techniques to combine all of the encrypted votes into an encrypted tally, and only the tally is decrypted.
+   This means that your ballot is never individually decrypted. To provide for the highest level of privacy, 
+   Helios lets election administrators designate multiple trustees. All trustees must be involved in decryption,
+    which further ensures that only the tally, never the individual votes, are decrypted.</p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
 <b>What’s so “smart” about the Helios Ballot Tracker?</b>
-<p>A typical tracking number, say for shipping a package, is more or less a random number: it means nothing other than the label on your package. It’s conceivable that your package gets there, tracking number intact, but its contents destroyed. In the digital world, we’re able to produce a special kind of tracking number that is far from random: it is a fingerprint of the encryption of your vote. So, if your smart ballot tracker makes it all the way to the tally, you know that not only did your ballot make it into the tally, you also know that it wasn’t tampered with in the process. That’s what makes it smart.</p>
+<p>A typical tracking number, say for shipping a package, is more or less a random number: it means nothing other 
+  than the label on your package. It’s conceivable that your package gets there, tracking number intact, but its 
+  contents destroyed. In the digital world, we’re able to produce a special kind of tracking number that is far 
+  from random: it is a fingerprint of the encryption of your vote. So, if your smart ballot tracker makes it all 
+  the way to the tally, you know that not only did your ballot make it into the tally, you also know that it wasn’t 
+  tampered with in the process. That’s what makes it smart.</p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
-<b>Is Helios the only system that provides this level of verifiability?</b>
-  <p>No, there are other systems. <a href="http://scantegrity.org">Scantegrity</a>, <a href="http://www.pretavoter.com/">Pret-a-Voter</a>, <a href="https://www.usenix.org/conference/evtwote13/workshop-program/presentation/bell">STARVote</a>, Wombat Voting, all provide true verifiability in paper-based voting systems. We like those systems, and we like the people behind those systems. VoteHere, a company that has since folded, was a pioneer in this area, too. The Helios System packs a number of innovations focused on enabling true verifiability for online elections to help everyone get a taste if this groundbreaking technology. But we are not the only game in town.</p>
+<b>Ist Helios das einzige Wahlsystem dieser Art?</b>
+  <p>Nein, es gibt noch weitere, zum Beispiel <a href="https://www.usenix.org/conference/evtwote13/workshop-program/presentation/bell">STARVote</a>, 
+    <a href="https://wombat.factcenter.org/">Wombat Voting</a>. 
+    Wir m&ouml;gen diese Systeme und die Leute, die daran arbeiten. 
+    VoteHere war eine Firma, die Pionerarbeit im Bereich von Online-Wahlen geleistet hat, sie existiert aber nicht mehr. 
+    Das Helios-System hat sich zum Ziel gesetzt, auf innovative Art und Weise echte Verifizierbarkeit f&uuml;r
+    Online-Wahlen zu erm&ouml;glichen, wir sind aber nicht die einzigen, die in diesem Bereich aktiv sind.</p>
 </div>
 
 <div class="row">&nbsp;</div>
 
 <div class="row">
-<b>Should we start using Helios for public-office elections? Maybe US President 2016?</b>
-<p>No, you should not. Online elections are appropriate when one does not expect a large attempt at defrauding or coercing voters. For some elections, notably US Federal and State elections, the stakes are too high, and we recommend against capturing votes over the Internet. This has nothing to do with Helios itself: we just don’t trust that people’s home computers are secure enough to withstand significant attacks.</p>
+<b>K&ouml;nnten wir Helios nicht auch f&uuml;r &ouml;ffentliche politische Wahlen verwenden, die n&auml;chste Wahl zum EU-Parlement zum Beispiel?</b>
+<p>Nein, sollten wir nicht. Online-Wahlen sind dann in Ordnung, wenn man keinen Wahlbetrug erwartet.
+  Bei &ouml;ffentlichen politischen Wahlen steht unheimlich viel am Spiel, nicht zuletzt das Vertrauen der
+  W&auml;hler*innen in die demokratischen Institutionen ihres Landes. Wir finden, es ist keine gute Idee,
+  Stimmen &uuml;ber das Internet zu erfassen. Das hat nichts mit Helios selbst zu tun. Wir glauben einfach,
+  dass die PCs und Smartphones unserer B&uuml;rger*innen sicher genug sind, um gegen ernst gemeinte Attacken
+  gewappnet zu sein.</p>
 
-<p>If you’d like to use a truly verifiable voting system for your public-office election, we recommend an in-person election. Helios could be adapted to the in-person, precinct voting setting, but we have not done this work yet, and we intend to focus on online elections first.</p>
+<p>Wenn man gerne ein echt verifizierbares Wahlsystem f&uuml;r &ouml;ffentliche politische Wahlen h&auml;tte,
+  empfehlen wir elektronische Wahlen in Wahllkokalen. Helios k&ouml;nnte in diese Richtung weiterentwickelt werden,
+  unser Fokus liegt derzeit aber auf Online-Wahlen.</p>
 </div>
 
 
