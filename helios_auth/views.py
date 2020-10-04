@@ -5,19 +5,19 @@ Ben Adida
 2009-07-05
 """
 
-import urllib
+import urllib.request, urllib.parse, urllib.error
 from django.urls import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 
 import helios_auth
 import settings
-from auth_systems import AUTH_SYSTEMS
-from auth_systems import password
+from .auth_systems import AUTH_SYSTEMS
+from .auth_systems import password
 from helios_auth.security import get_user
 from helios_auth.url_names import AUTH_INDEX, AUTH_START, AUTH_AFTER, AUTH_WHY, AUTH_AFTER_INTERVENTION
-from models import User
-from security import FIELDS_TO_SAVE
-from view_utils import render_template, render_template_raw
+from .models import User
+from .security import FIELDS_TO_SAVE
+from .view_utils import render_template, render_template_raw
 
 
 def index(request):
@@ -74,7 +74,7 @@ def do_local_logout(request):
 
   user = None
 
-  if request.session.has_key('user'):
+  if 'user' in request.session:
     user = request.session['user']
     
   # 2010-08-14 be much more aggressive here
@@ -173,7 +173,7 @@ def perms_why(request):
 
 def after(request):
   # which auth system were we using?
-  if not request.session.has_key('auth_system_name'):
+  if 'auth_system_name' not in request.session:
     do_local_logout(request)
     return HttpResponseRedirect("/")
     
@@ -188,7 +188,7 @@ def after(request):
     
     request.session['user'] = user
   else:
-    return HttpResponseRedirect("%s?%s" % (reverse(AUTH_WHY), urllib.urlencode({'system_name' : request.session['auth_system_name']})))
+    return HttpResponseRedirect("%s?%s" % (reverse(AUTH_WHY), urllib.parse.urlencode({'system_name' : request.session['auth_system_name']})))
 
   # does the auth system want to present an additional view?
   # this is, for example, to prompt the user to follow @heliosvoting
@@ -203,7 +203,7 @@ def after(request):
 
 def after_intervention(request):
   return_url = "/"
-  if request.session.has_key('auth_return_url'):
+  if 'auth_return_url' in request.session:
     return_url = request.session['auth_return_url']
     del request.session['auth_return_url']
   return HttpResponseRedirect(settings.URL_HOST + return_url)

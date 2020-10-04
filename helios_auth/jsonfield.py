@@ -55,7 +55,7 @@ class JSONField(models.TextField):
 
     def get_prep_value(self, value):
         """Convert our JSON object to a string before we save"""
-        if isinstance(value, basestring):
+        if isinstance(value, str):
             return value
 
         if value is None:

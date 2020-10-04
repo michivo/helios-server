@@ -12,7 +12,7 @@ from django.template import loader
 from functools import update_wrapper
 
 import helios
-import utils
+from . import utils
 from helios_auth.security import get_user
 
 ##
@@ -32,7 +32,7 @@ def prepare_vars(request, values):
   vars_with_user['user'] = get_user(request)
 
   # csrf protection
-  if request.session.has_key('csrf_token'):
+  if 'csrf_token' in request.session:
     vars_with_user['csrf_token'] = request.session['csrf_token']
 
   vars_with_user['utils'] = utils
@@ -80,7 +80,7 @@ def return_json(func):
       return_val = func(self, *args, **kwargs)
       try:
         return render_json(utils.to_json(return_val))
-      except Exception, e:
+      except Exception as e:
         import logging
         logging.error("problem with serialization: " + str(return_val) + " / " + str(e))
         raise e

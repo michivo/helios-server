@@ -9,8 +9,8 @@ import helios_auth.views as auth_views
 from helios.models import Election
 from helios.security import can_create_election
 from helios_auth.security import get_user
-from view_utils import render_template
-import glue
+from .view_utils import render_template
+from . import glue
 
 
 glue.glue()  # actually apply glue helios.view <-> helios.signals

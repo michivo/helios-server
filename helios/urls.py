@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url, include
 
-import url_names as names
-import views
+from . import url_names as names
+from . import views
 
 urlpatterns = [
   url(r'^autologin$', views.admin_autologin),
