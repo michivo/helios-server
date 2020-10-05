@@ -1,6 +1,6 @@
 {% extends TEMPLATE_BASE %}
 
-{% block title %}Voters &amp; Stimmzettel-Tracking-Center f&uuml;r {{election.name}}{% endblock %}
+{% block title %}W&auml;hler*innen &amp; Stimmzettel-Tracking-Center f&uuml;r {{election.name}}{% endblock %}
 {% block content %}
   <h3 class="title">{{election.name}} &mdash; W&aumlhler*innen- und Stimmzettel-Tracking-Center <span style="font-size:0.7em;">[<a href="{% url "election@view" election.uuid %}">zur&uuml;ck zur Wahl</a>]</span></h3>
 
@@ -103,7 +103,7 @@ noch keine Stimme abgegeben
 {% endif %}
 
 
-Voters {{voters_page.start_index}} - {{voters_page.end_index}} (of {{total_voters}})&nbsp;&nbsp;
+W&aumlhler*innen {{voters_page.start_index}} - {{voters_page.end_index}} (von {{total_voters}})&nbsp;&nbsp;
 
 {% if voters_page.has_next %}
 <a href="{% url "election@voters@list-pretty" election.uuid %}?page={{voters_page.next_page_number}}&limit={{limit}}&q={{q|urlencode}}">N&auml;chste {{limit}}</a> &nbsp;&nbsp;
