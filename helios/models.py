@@ -15,6 +15,7 @@ import io
 import random
 import unicodecsv
 import uuid
+import codecs
 from django.conf import settings
 from django.db import models, transaction
 
@@ -270,8 +271,8 @@ class Election(HeliosModel):
     # now we're just storing the content
     # random_filename = str(uuid.uuid4())
     # new_voter_file.voter_file.save(random_filename, uploaded_file)
-
     new_voter_file = VoterFile(election = self, voter_file_content = uploaded_file.read())
+    
     new_voter_file.save()
     
     self.append_log(ElectionLog.VOTER_FILE_ADDED)
@@ -714,9 +715,13 @@ class VoterFile(models.Model):
   def itervoters(self):
     if self.voter_file_content:
       if type(self.voter_file_content) == str:
-        content = self.voter_file_content.encode('utf-8')
+        # for some reason, voter_file_content contains a string encoded byte sequence, so e.g. "b'Foobar'"
+        if self.voter_file_content.startswith( "b'" ):
+          content = codecs.escape_decode(bytes(self.voter_file_content, 'utf-8'))[0].decode('utf-8')[2:-1]
+        else:
+          content = self.voter_file_content
       else:
-        content = self.voter_file_content
+        content = self.voter_file_content.decode()
 
       # now we have to handle non-universal-newline stuff
       # we do this in a simple way: replace all \r with \n
@@ -724,7 +729,7 @@ class VoterFile(models.Model):
       # this should leave us with only \n
       content = content.replace('\r','\n').replace('\n\n','\n')
 
-      voter_stream = io.BytesIO(content)
+      voter_stream = io.BytesIO(content.encode('utf-8'))
     else:
       voter_stream = open(self.voter_file.path, "rU")
 
